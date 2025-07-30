@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <h2>Send an email</h2>
+    {% with messages =get_flashed_messages(with_categories=true)%}
+    {% for category , message in messages %}
+    {% if category=='success'%}
+    <p style="color: green;">{{message}}</p>
+    {% else %}
+    <p style="color: red;">{{message}}</p>
+    {% endif %}
+    {% endfor %}
+    {% endwith %}
+
+    <form method="POST" action="/send">
+        <input type="text" name="name" placeholder="Reciepient name" required><br><br>
+        <input type="email" name="email" placeholder="Reciepient email" required><br><br>
+        <input type="text" name="subject" placeholder="Subject" required><br><br>
+        <textarea name="message" placeholder="Message here" rows="4" required></textarea><br><br>
+        <button type="submit">Send Email</button>
+    </form>
+</body>
+
+</html>
